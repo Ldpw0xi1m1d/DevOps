@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab1</title>
+</head>
+<body>
+<div>
+    <label for="openText">Отправить</label>
+    <input type="text" id="openText" name="input">
+    <button onclick="sendOut()">Отправить</button>
+</div>
+<div>
+    <label for="outputText"></label>
+    <input type="text" id="outputText" readonly>
+    <button onclick="getData()">Получить</button>
+</div>
+
+<script>
+    function sendOut() {
+        const text = document.getElementById("openText").value;
+        fetch("http://localhost:8080/info", {
+            mode: 'no-cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: text
+        })
+    }
+
+    function getData() {
+        fetch("http://localhost:8080/info")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("outputText").value = data;
+            })
+            .catch(error => console.error("Error getting data"));
+    }
+</script>
+</body>
+</html>
