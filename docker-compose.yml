@@ -1,0 +1,21 @@
+version: '3'
+services:
+  java-back:
+    build:
+      dockerfile: /back/Dockerfile
+    networks:
+      - back-tier
+    volumes:
+      - data:/app/data
+  nginx-front:
+    build:
+      dockerfile: /front/Dockerfile
+    depends_on:
+      - java-back
+    networks:
+      - back-tier
+volumes:
+  data:
+networks:
+  back-tier:
+    driver: bridge
