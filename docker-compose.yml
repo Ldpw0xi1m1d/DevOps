@@ -2,7 +2,7 @@ version: '3'
 services:
   java-back:
     build:
-      context: ./back/
+      context: .
       dockerfile: Dockerfile
     networks:
       - back-tier
@@ -12,7 +12,7 @@ services:
 
   nginx-front:
     build:
-      context: ./front/
+      context: .
       dockerfile: Dockerfile
     depends_on:
       - java-back
