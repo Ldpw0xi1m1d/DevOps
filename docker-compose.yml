@@ -2,7 +2,7 @@ version: '3'
 services:
   java-back:
     build:
-      context: ./back/Dockerfile
+      context: ./Dockerfile
     networks:
       - back-tier
     volumes:
@@ -11,7 +11,7 @@ services:
 
   nginx-front:
     build:
-      context: ./front/Dockerfile
+      context: ./Dockerfile
     depends_on:
       - java-back
     restart: always
