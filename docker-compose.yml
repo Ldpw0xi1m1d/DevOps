@@ -12,6 +12,7 @@ services:
 
   nginx-front:
     build:
+      context: .
       dockerfile: /front/Dockerfile
     depends_on:
       - java-back
